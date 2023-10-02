@@ -2,11 +2,11 @@ package org.java.lesson.app.model;
 
 public class Movie {
 	
-	static private int id = 0;
+    private int id = 0;
 	private String title;
 	
-	public Movie(String title) {
-		setId(id++);
+	public Movie(String title, int id) {
+		setId(id);
 		setTitle(title);
 	}
 
@@ -15,7 +15,7 @@ public class Movie {
 	}
 
 	public void setId(int id) {
-		Movie.id = id;
+		this.id = id;
 	}
 
 	public String getTitle() {
