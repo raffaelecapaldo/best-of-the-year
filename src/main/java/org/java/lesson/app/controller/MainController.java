@@ -80,7 +80,6 @@ public class MainController {
 		 String title = "";
 		 List<Song> bestSongs = getBestSongs();
 		 for (Song song: bestSongs) {
-			 System.out.println(song.getId());
 			 if (song.getId() == itemId) {
 				 title = song.getTitle();
 				 break;
