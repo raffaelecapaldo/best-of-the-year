@@ -1,13 +1,20 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8">
-<title>Best songs</title>
-</head>
+<th:block th:replace="frags :: head('Best song of the Year')">
+</th:block>
 <body>
-<header>
-<h1>Best songs of the Year</h1>
-<p>[[${bestSongsString}]]</p>
-</header>
+    <header th:replace="frags :: header">
+    </header>
+    <main>
+        <div class="container-fluid d-flex justify-content-center">
+            <div>
+                <h3 class="text-center">Best songs</h3>
+                <ul class="list-unstyled m-0 d-flex flex-column align-items-center gap-3">
+                    <th:block th:each="song : ${bestSongs}">
+                        <li th:replace="frags :: buttonr(${song.title}, 'songs/' + ${song.id})"></li>
+                    </th:block>
+                    
+                </ul>
+            </div>
+        </div>
+    </main>
 </body>
 </html>

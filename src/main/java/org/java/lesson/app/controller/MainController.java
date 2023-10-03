@@ -45,15 +45,8 @@ public class MainController {
 	
 	@GetMapping("/movies")
 	public String getMovies(Model model) {
-		List<Movie> bestMovies = getBestMovies();
-		String bestMoviesString = "";
-		int i = 1;
-		for (Movie movie: bestMovies ) {			
-			bestMoviesString += movie.getTitle() + (i == bestMovies.size() ? ".":", ");
-			i++;
-		}
-		
-		model.addAttribute("bestMoviesString", bestMoviesString);
+		List<Movie> bestMovies = getBestMovies();				
+		model.addAttribute("bestMovies", bestMovies);
 		
 		return "movies";
 	}
@@ -61,15 +54,7 @@ public class MainController {
 	@GetMapping("/songs")
 	public String getSongs(Model model) {
 		List<Song> bestSongs = getBestSongs();
-		String bestSongsString = "";
-		
-		int i = 1;
-		for (Song song: bestSongs ) {			
-			bestSongsString += song.getTitle() + (i == bestSongs.size() ? ".":", ");
-			i++;
-		}
-		
-		model.addAttribute("bestSongsString", bestSongsString);
+		model.addAttribute("bestSongs", bestSongs);
 				
 		return "songs";
 	}
@@ -77,48 +62,46 @@ public class MainController {
 	 @GetMapping("/songs/{id}")
 	 public String getSong(@PathVariable("id") int itemId,  Model model) {
 		 String type = "Song";
-		 String title = "";
+		 Song selectedItem = null;
+		 boolean notFound = true;
 		 List<Song> bestSongs = getBestSongs();
 		 for (Song song: bestSongs) {
 			 if (song.getId() == itemId) {
-				 title = song.getTitle();
+				 selectedItem = song;
+				 notFound = false;
 				 break;
 			 }
-			 else {
-				 title = "Not founded";
-			 }
-			 
-			 
-			 
 		 }
-		 model.addAttribute("title", title);
+		 model.addAttribute("selectedItem", selectedItem);
 		 model.addAttribute("type", type);
-		 model.addAttribute("itemId", itemId);
-
-
+		 
+		 if (notFound) {
+			 return "not-found";
+		 }
+		 
 		 return "details";
 	 }
 	 
 	 @GetMapping("/movies/{id}")
 	 public String getMovie(@PathVariable("id") int itemId,  Model model) {
 		 String type = "Movie";
-		 String title = "";
+		 Movie selectedItem = null;
+		 boolean notFound = true;
 		 List<Movie> bestMovies = getBestMovies();
 		 for (Movie movie: bestMovies) {
 			 if (movie.getId() == itemId) {
-				 title = movie.getTitle();
+				 selectedItem = movie;
+				 notFound = false;
 				 break;
-			 }
-			 else {
-				 title = "Not founded";
-			 }
-			 
-			 
-			 
+			 }	 
 		 }
-		 model.addAttribute("title", title);
+		 model.addAttribute("selectedItem", selectedItem);
 		 model.addAttribute("type", type);
-		 model.addAttribute("itemId", itemId);
+			System.out.println(notFound);
+
+		 if (notFound) {
+			 return "not-found";
+		 }
 
 
 		 return "details";
