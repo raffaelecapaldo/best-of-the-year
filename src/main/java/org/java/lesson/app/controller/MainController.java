@@ -19,7 +19,8 @@ public class MainController {
 		String myName = "Raffaele";
 		model.addAttribute("myName", myName);
 		
-		
+		String pageName = "Home";
+		model.addAttribute("pageName", pageName);
 		return "home";
 	}
 	
@@ -48,6 +49,8 @@ public class MainController {
 		List<Movie> bestMovies = getBestMovies();				
 		model.addAttribute("bestMovies", bestMovies);
 		
+		String pageName = "Movies";
+		model.addAttribute("pageName", pageName);
 		return "movies";
 	}
 	
@@ -55,7 +58,9 @@ public class MainController {
 	public String getSongs(Model model) {
 		List<Song> bestSongs = getBestSongs();
 		model.addAttribute("bestSongs", bestSongs);
-				
+			
+		String pageName = "Songs";
+		model.addAttribute("pageName", pageName);
 		return "songs";
 	}
 	
@@ -103,7 +108,7 @@ public class MainController {
 			 return "not-found";
 		 }
 
-
+		 
 		 return "details";
 	 }
 

@@ -27,7 +27,7 @@
     </header>
 
 
-    <li th:fragment="buttonp(name, link)"><a th:classappend="true  ? 'active': ''" class="btn btn-primary px-4" th:href="${link}" th:text="${name}"></a></li>
+    <li th:fragment="buttonp(name, link)"><a th:classappend="${pageName == name}  ? 'active': ''" class="btn btn-primary px-4" th:href="${link}" th:text="${name}"></a></li>
     <li th:fragment="buttonr(name, link)"><a style="width: 200px" class="btn btn-danger px-4" th:href="${link}" th:text="${name}"></a></li>
 
 
